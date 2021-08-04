@@ -5,6 +5,11 @@
 // You can also execute the entire file by running the command:
 //     SFDX: Execute Anonymous Apex with Editor Contents
 
-string tempvar = 'Enter_your_name_here';
-System.debug('Hello World!');
-System.debug('My name is ' + tempvar);
+
+List<Contact> contacts = [SELECT Name, AccountId FROM Contact];
+for (Contact contact : contacts) {
+    System.debug(contact);
+    if (contact.AccountId != null) {
+        contact.AccountLastName__c = contact.Account + '\n' + contact.AccountId;
+    }
+}
