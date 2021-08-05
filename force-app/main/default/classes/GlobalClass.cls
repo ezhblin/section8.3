@@ -23,7 +23,6 @@ public with sharing class GlobalClass {
         for (Case caseItem : cases) {  
             if (caseItem.Description != null) { 
                 List<String> sPlitDescription = caseItem.Description.split(';');
-                System.debug(sPlitDescription);
                 try {
                     if (mapCase.containsKey(sPlitDescription[sPlitDescription.size()-1])) {
                         mapCase.get(sPlitDescription[sPlitDescription.size()-1]).add(caseItem);

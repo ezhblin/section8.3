@@ -28,3 +28,6 @@ List<Case> cases = [SELECT Id, Status, Description, IsClosed FROM Case WHERE IsC
 for (Case caseItem : cases) {
     System.debug('=====>>>> ' + caseItem.Description.contains('|'));
 }
+
+String str = 'This is my delimetr |';
+System.debug('=====>>>> ' + str);
