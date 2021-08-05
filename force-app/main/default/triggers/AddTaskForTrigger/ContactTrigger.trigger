@@ -1,3 +1,7 @@
-trigger ContactTrigger on Contact (before insert, before update) {
-    ContactTriggerkHandler.makeMark(trigger.new);
+trigger ContactTrigger on Contact (before insert, before update, after delete) {
+    if (Trigger.isDelete) {
+        ContactTriggerHandler.closeCase(Trigger.old);
+    } else {
+        ContactTriggerHandler.makeMark(Trigger.new);
+    }
 }

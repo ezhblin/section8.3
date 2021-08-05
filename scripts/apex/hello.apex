@@ -13,3 +13,18 @@ for (Contact contact : contacts) {
         contact.AccountLastName__c = contact.Account + '\n' + contact.AccountId;
     }
 }
+Case closeCase = [SELECT Status FROM Case WHERE CaseNumber = '00001026' LIMIT 1];
+List<Case> cases = [SELECT Id, Status, Description, IsClosed FROM Case WHERE IsClosed != true];
+closeCase.Status = 'Closed';
+update closeCase;
+Case closeCase = new Case(Status = 'Closed');
+System.debug('=====>>>> ' + [SELECT Status , IsClosed FROM Case WHERE CaseNumber = '00001027'].IsClosed);
+
+Account account = [SELECT id FROM Account WHERE Name = 'PROBLEM' LIMIT 1];
+delete account ;
+
+
+List<Case> cases = [SELECT Id, Status, Description, IsClosed FROM Case WHERE IsClosed != true];
+for (Case caseItem : cases) {
+    System.debug('=====>>>> ' + caseItem.Description.contains('|'));
+}

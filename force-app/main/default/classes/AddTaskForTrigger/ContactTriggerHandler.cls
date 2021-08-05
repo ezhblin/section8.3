@@ -9,8 +9,18 @@ public with sharing class ContactTriggerHandler {
 
         for (Contact contact : contacts) {
             if (contact.AccountId != null) {
-                contact.AccountLastName__c = accountNameForContact.get(contact.AccountId).Name + '\n' + contact.AccountId;
+                contact.AccountLastName__c = accountNameForContact.get(contact.AccountId).Name + ';' + contact.AccountId;
             }
         }
+    }
+
+    public static void closeCase(List<Contact> contacts) {
+        List<Id> accountsId = new List<Id>(); 
+        for (Contact contactItem : contacts) {
+            if (contactItem.AccountId != null) {
+                accountsId.add(contactItem.AccountId);
+            }
+        }
+        GlobalClass.closeCase([SELECT Id FROM Account WHERE Id IN: accountsId]);
     }
 }
