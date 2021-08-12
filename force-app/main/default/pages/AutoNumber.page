@@ -1,0 +1,17 @@
+<apex:page controller = 'CarNumberController'>
+  <!-- Begin Default Content REMOVE THIS -->
+  <title>Do number!</title>
+  <apex:form>
+    <apex:pageBlock>
+      Youe car number: <apex:inputText value="{!carNumber}" id = "carNumber"/>
+      <apex:pageBlockButtons location="bottom"> 
+        <apex:commandButton action="{!generateCarNumberForMe}" id="generateButton" value="Generate"/>
+        <apex:commandButton action="{!saveCarNumber}" id="saveButton" value="Save"/>
+        <apex:commandButton action="{!generateCarNumberForAll}" id="generateCarNumberForAll" value="Generate for all"/>
+      </apex:pageBlockButtons>
+
+
+    </apex:pageBlock>
+  </apex:form>
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

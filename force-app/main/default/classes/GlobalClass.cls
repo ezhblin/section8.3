@@ -16,6 +16,7 @@ public with sharing class GlobalClass {
         return null;
     }
     
+    public static List<String> alphabet= new List<String>('abcdefghiklmnopqrstvxyz'.split(''));
     public static void closeCase(List<Account> accounts) {
         List<Case> cases = [SELECT Id, Status, Description, IsClosed FROM Case WHERE IsClosed != true];
         List<Case> casesForClose = new List<Case>();

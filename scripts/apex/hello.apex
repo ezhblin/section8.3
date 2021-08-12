@@ -30,4 +30,20 @@ for (Case caseItem : cases) {
 }
 
 String str = 'This is my delimetr |';
-System.debug('=====>>>> ' + str);
+System.debug('=====>>>> ' + 'ABCDEFGHIKLMNOPQRSTVXYZ'.toLowerCase());
+
+'ABCDEFGHIKLMNOPQRSTVXYZ'
+
+
+CarNumberController.generateCarNumber();
+CarNumberController.saveCarNumber();
+
+
+static User currentUser = [SELECT CarNumber__c, City FROM User WHERE Id =: UserInfo.getUserId() LIMIT 1][0];
+System.debug('=====>>>> ' + CharCodes__c.getInstance(UserInfo.getUserId()).TextCode__c);
+
+@isTest
+User user = [SELECT Id, Name, CarNumber__c, City FROM User WHERE Name = 'Lola Mola' LIMIT 50000][0];
+System.debug('=====>>>>' + user);
+user.CarNumber__c = ''; 
+update user ;
