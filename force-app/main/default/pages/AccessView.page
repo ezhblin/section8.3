@@ -1,0 +1,13 @@
+<apex:page Controller = 'AccessToFields'>
+<!-- Begin Default Content REMOVE THIS -->
+    <apex:form >
+        <apex:pageBlock>
+            <apex:pageBlockTable value="{!flc}" var="f">
+                <apex:column value="{!f.fieldName}"/>
+                <apex:column value="{!f.canRead}"/>
+                <apex:column value="{!f.canEdit}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+<!-- End Default Content REMOVE THIS -->
+</apex:page>

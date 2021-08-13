@@ -6,7 +6,6 @@ public with sharing class CarNumberController {
     public CarNumberController() {
         carNumber = currentUser.CarNumber__c;
     }
-
     
     public static void generateCarNumber(User user) {
         if (carNumbers.isEmpty()) {
@@ -24,9 +23,7 @@ public with sharing class CarNumberController {
                 carNumbers.add(carNumber);
                 user.CarNumber__c = carNumber;
             }
-        }
-        
-
+        }       
     }
 
     static String getRegionCode(String city) {
@@ -62,7 +59,8 @@ public with sharing class CarNumberController {
         for (User userItem : allWannaCar) {
             generateCarNumber(userItem);
         }
-        Database.update(allWannaCar, false);
+        
+        update allWannaCar;
     }
 
     public static void generateCarNumberForMe() {

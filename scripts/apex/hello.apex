@@ -43,7 +43,10 @@ static User currentUser = [SELECT CarNumber__c, City FROM User WHERE Id =: UserI
 System.debug('=====>>>> ' + CharCodes__c.getInstance(UserInfo.getUserId()).TextCode__c);
 
 @isTest
-User user = [SELECT Id, Name, CarNumber__c, City FROM User WHERE Name = 'Lola Mola' LIMIT 50000][0];
-System.debug('=====>>>>' + user);
+list<User> users = [SELECT Id, Name, CarNumber__c, City FROM User WHERE CarNumber__c = '' AND ProfileId != null LIMIT 50000];
+for (User user : users) {
+    System.debug('=====>>>>' + user);
+}
+
 user.CarNumber__c = ''; 
 update user ;
