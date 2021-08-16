@@ -1,9 +1,9 @@
 public with sharing class DataAccess {
-    public String fieldName;
-    private Boolean canRead;
-    private Boolean canEdit; 
+    public Schema.SObjectField fieldName {get; set;}
+    public Boolean canRead {get; set;}
+    public Boolean canEdit {get; set;}
 
-    public DataAccess(String fieldName, Boolean canRead, Boolean canEdit) {
+    public DataAccess(Schema.SObjectField fieldName, Boolean canRead, Boolean canEdit) {
         this.fieldName = fieldName;
         this.canRead = canRead;
         this.canEdit = canEdit;

@@ -1,11 +1,21 @@
-<apex:page Controller = 'AccessToFields'>
+<apex:page controller="AccessToFields">
 <!-- Begin Default Content REMOVE THIS -->
     <apex:form >
-        <apex:pageBlock>
+        <apex:pageBlock >
+            <apex:pageBlockSection columns="3"> 
+                Object:  <apex:inputText value="{!objectName}"/> 
+                <apex:commandButton action="{!getAccessInfo}" value="Get Info"/>   
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="3">
+                <apex:outputText value="Access to delete: {!canDelete}"/>
+                <apex:outputText value="Access to update: {!canUpdate}"/>
+                <apex:outputText value="Access to create: {!canCreate}"/>
+            </apex:pageBlockSection>
+            
             <apex:pageBlockTable value="{!flc}" var="f">
-                <apex:column value="{!f.fieldName}"/>
-                <apex:column value="{!f.canRead}"/>
-                <apex:column value="{!f.canEdit}"/>
+                <apex:column value="{!f.fieldName}" headerValue="Field" />
+                <apex:column value="{!f.canRead}" headerValue="Read"/>
+                <apex:column value="{!f.canEdit}" headerValue="Edit"/>
             </apex:pageBlockTable>
         </apex:pageBlock>
     </apex:form>

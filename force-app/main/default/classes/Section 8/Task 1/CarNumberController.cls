@@ -67,4 +67,3 @@ public with sharing class CarNumberController {
         generateCarNumber(currentUser);
     }
 }
-
