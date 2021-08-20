@@ -50,3 +50,13 @@ for (User user : users) {
 
 user.CarNumber__c = ''; 
 update user ;
+
+List<Schema.SObjectField> updatableFeilds = GlobalClass.getEditadbleField('User');
+String stringForFields = '';
+for (Schema.SObjectField itemField : updatableFeilds) {
+    stringForFields += (itemField + ', ');
+}
+stringForFields = stringForFields.removeEnd(', ');
+
+List<User> users = Database.query('SELECT '+stringForFields+ ' FROM User');
+System.debug('THIS====>> ' + users);
