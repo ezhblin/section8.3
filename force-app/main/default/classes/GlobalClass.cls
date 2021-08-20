@@ -1,6 +1,31 @@
 public with sharing class GlobalClass {
     static Map<String, Schema.SObjectType> gd = Schema.getGlobalDescribe();
     
+    public static Schema.SObjectType getObject(String objectName) {
+        if (gd.containsKey(objectName)) {
+            return gd.get(objectName);
+        } else {
+            return null;
+        }
+    }
+    
+    public static List<Schema.SObjectField> getTextEditadbleField(String objectName) {
+        Schema.SObjectType myObject = getObject(objectName);
+        if (myObject != null) {
+            Schema.DescribeSObjectResult objectInfo = myObject.getDescribe();
+            List<Schema.SObjectField> fields = objectInfo.fields.getMap().values();
+            List<Schema.SObjectField> canUpdeteFields = new List<Schema.SObjectField>();
+            for (Schema.SObjectField itemField : fields) {
+                Schema.DescribeFieldResult fieldInfo = itemField.getDescribe();
+                if (fieldInfo.isAccessible() && fieldInfo.isUpdateable() && fieldInfo.getType() == Schema.DisplayType.STRING) {
+                    canUpdeteFields.add(itemField);
+                }
+            }
+            return canUpdeteFields;
+        }
+        return null;
+    }
+    
     public static Map<String, String> getPickList(String objectName, String fieldName) {   
         Map<String, String> pickListValues = new Map<String, String>();
         if (gd.containsKey(objectName)) {

@@ -1,0 +1,34 @@
+<aura:component controller="AccountController">
+    <aura:attribute name = 'myString' type = 'String'/>
+    <aura:attribute name = 'myData' type = 'Object'/>
+    <aura:attribute name = 'myColumns' type = 'List'/>
+    <aura:attribute name = 'searchingName' type = 'String' default=""/>
+    <aura:handler name = "init" value ="{!this}" action = "{!c.init}"/>
+    
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-account" title="account">
+                        <lightning:icon iconName='standard:account' size='large'/>
+                        <span class="slds-assistive-text">account</span>
+                    </span>
+                </div>
+                <lightning:input value="{!v.myString}"  class ="input" placeholder="Enter object name here..." label="Object"/>
+                <lightning:input value="{!v.searchingName}"  class ="input" placeholder="Enter path name here..." label="Name"/>                    
+                <div>
+                    <lightning:button label = 'View' class = "button" disabled= "{!if(!v.myString,true,false)}" onclick="{!c.searchHandleClick}"/>
+                    <lightning:button label = 'Update' class = "button" disabled= "{!if(!v.myData ,true,false)}" onclick="{!c.updateHandleClick}"/>
+                    <lightning:button label = 'Clear' class = "button" disabled= "{!if(v.myData == null,true,false)}" onclick="{!c.clearHandleClick}"/>
+                </div>
+            </header>
+        </div>
+    </article>
+    <div>
+        <lightning:datatable data = '{!v.myData}' 
+                             columns = '{!v.myColumns}'
+                             keyField = 'Id' 
+                             hideCheckboxColumn = 'true'
+                             class = 'table'/>
+    </div>
+</aura:component>

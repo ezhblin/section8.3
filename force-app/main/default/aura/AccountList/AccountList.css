@@ -1,0 +1,33 @@
+.THIS .button {
+    margin: 0px;
+    margin-top: 22px; 
+    border-radius: 0px;
+    border: none;
+    --sds-c-button-neutral-color-background-active: #0176d3;
+    --sds-c-button-neutral-color-background-hover: none;
+    --sds-c-button-neutral-color-border-hover: #0176d3;
+    --sds-c-button-shadow-focus: none;
+}
+
+.THIS .input {
+    margin: 0px;
+    border: 0px;
+    --sds-c-input-radius-border: 0;
+    --sds-c-input-shadow-focus: none;
+    --sds-c-input-height: 10px;
+}
+
+.THIS .slds-input {
+    height: 10px;
+}
+.THIS .table {
+    column-width: 100px;
+}
+
+.THIS .slds-media__figure .slds-icon.slds-icon_large {
+    fill: red !important;
+}
+
+.THIS .slds-media__figure {
+    margin-top: 20px;
+}
