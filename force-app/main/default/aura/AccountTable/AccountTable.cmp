@@ -49,11 +49,11 @@
                 <div>
                     <lightning:button
                         variant="success"
-                        label = "Show/Hide Details"
-                        aura:id = "{!item.Id}"
-                        disabled = '{!item.hide}'
-                        value = "{!item.Id}"
-                        onclick = "{!c.showHideDetails}"
+                        label="Show/Hide Details"
+                        aura:id="{!item.Id}"
+                        disabled="{!item.hide}"
+                        value="{!item.Id}"
+                        onclick="{!c.showHideDetails}"
                     ></lightning:button>
                 </div>
             </td>
