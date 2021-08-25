@@ -48,7 +48,7 @@
                 let data = component.get('v.records');
                 data.map(item => {
                     if (item.Id == component.get('v.record.Id')){
-                        item.hide = true
+                        item.hide = true;
                     }
                 });
                 component.set('v.records', data);
