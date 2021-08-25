@@ -1,4 +1,4 @@
-<aura:component  controller = 'AccountTableControllerApex' implements="force:hasRecordId">
+<aura:component  controller = 'AccountTableControllerApex' extends = "c:SuperTable">
 
 <aura:attribute name="records" type = "Account[]" access="public"/>
 <aura:attribute name="record" type = "Account"/>
@@ -7,57 +7,57 @@
 <aura:handler name = "init" value ="{!this}" action = "{!c.init}"/>
 
 
-<div>
+<aura:set attribute="CardFaced">
     <c:AccountCard 
         aura:id = "detailCard"
         record = "{!v.record}"
+        loaded = "{!v.loaded}"
         updateRecord = "{!c.updateTable}"
         deleteRecord = "{!c.deteteFromTable}"
     ></c:AccountCard>
-</div>
-<table class = "slds-table slds-table_cell-buffer slds-table_bordered">
-    <thead>
+</aura:set>
+
+<aura:set attribute="TableHead">
+    <tr>
+        <th>
+            <div>Name</div>
+        </th>
+        <th>
+            <div>Phone</div>
+        </th>
+        <th>
+            <div>Website</div>
+        </th>
+        <th>
+            <div></div>
+        </th>
+    </tr>
+</aura:set> 
+<aura:set attribute="TableBody">      
+    <aura:iteration items="{!v.records}" var = "item" indexVar="i">
         <tr>
-            <th>
-                <div>Name</div>
-            </th>
-            <th>
-                <div>Phone</div>
-            </th>
-            <th>
-                <div>Website</div>
-            </th>
-            <th>
-                <div></div>
-            </th>
+            <td>
+                <div>{!item.Name}</div>
+            </td>
+            <td>
+                <div>{!item.Phone}</div>
+            </td>
+            <td>
+                <div>{!item.Website}</div>
+            </td>
+            <td>
+                <div>
+                    <lightning:button
+                        variant="success"
+                        label = "Show/Hide Details"
+                        aura:id = "{!item.Id}"
+                        disabled = '{!item.hide}'
+                        value = "{!item.Id}"
+                        onclick = "{!c.showHideDetails}"
+                    ></lightning:button>
+                </div>
+            </td>
         </tr>
-    </thead>
-    <tbody>
-        <aura:iteration items="{!v.records}" var = "account" indexVar="i">
-            <tr>
-                <td>
-                    <div>{!account.Name}</div>
-                </td>
-                <td>
-                    <div>{!account.Phone}</div>
-                </td>
-                <td>
-                    <div>{!account.Website}</div>
-                </td>
-                <td>
-                    <div>
-                        <lightning:button
-                            variant="success"
-                            label = "Show/Hide Details"
-                            aura:id = "{!account.Id}"
-                            disabled = '{!account.hide}'
-                            value = "{!account.Id}"
-                            onclick = "{!c.showHideDetails}"
-                        ></lightning:button>
-                    </div>
-                </td>
-            </tr>
-        </aura:iteration>
-    </tbody>
-</table>
+    </aura:iteration>
+</aura:set> 
 </aura:component>

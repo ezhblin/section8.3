@@ -6,12 +6,12 @@
     },
 
     updateRecordParrent : function(component, event, helper) {
-        component.set('v.loaded', !component.get('v.loaded'));
+        component.set('v.loaded', false);
         component.recordForUpdate(component.get('v.record'));
-        component.set('v.loaded', !component.get('v.loaded'));
     },
 
     deleteRecordParrent : function(component, event, helper) {
+        component.set('v.loaded', false);
         component.recordForDelete(component.get('v.record'));
     },
 })

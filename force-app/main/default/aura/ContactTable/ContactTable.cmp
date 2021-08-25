@@ -1,0 +1,64 @@
+<aura:component controller = 'ContactTableControllerApex' extends = "c:SuperTable">
+	
+    <aura:attribute name="records" type = "Contact[]" access="public"/>
+    <aura:attribute name="record" type = "Contact"/>
+
+
+    <aura:handler name = "init" value ="{!this}" action = "{!c.init}"/>
+
+
+    <aura:set attribute="CardFaced">
+        <c:ContactCard 
+            aura:id = "detailCard"
+            record = "{!v.record}"
+            loaded = "{!v.loaded}"
+            updateRecord = "{!c.updateTable}"
+            deleteRecord = "{!c.deteteFromTable}"
+        ></c:ContactCard>
+    </aura:set>
+    
+    <aura:set attribute="TableHead">
+        <tr>
+            <th>
+                <div>Name</div>
+            </th>
+            <th>
+                <div>Phone</div>
+            </th>
+            <th>
+                <div>Email</div>
+            </th>
+            <th>
+                <div></div>
+            </th>
+        </tr>
+    </aura:set> 
+
+    <aura:set attribute="TableBody">      
+        <aura:iteration items="{!v.records}" var = "item" indexVar="i">
+            <tr>
+                <td>
+                    <div>{!item.FirstName}&nbsp;{!item.LastName}</div>
+                </td>
+                <td>
+                    <div>{!item.Phone}</div>
+                </td>
+                <td>
+                    <div>{!item.Email}</div>
+                </td>
+                <td>
+                    <div>
+                        <lightning:button
+                            variant="success"
+                            label = "Show/Hide Details"
+                            aura:id = "{!item.Id}"
+                            disabled = '{!item.hide}'
+                            value = "{!item.Id}"
+                            onclick = "{!c.showHideDetails}"
+                        ></lightning:button>
+                    </div>
+                </td>
+            </tr>
+        </aura:iteration>
+    </aura:set> 
+</aura:component>

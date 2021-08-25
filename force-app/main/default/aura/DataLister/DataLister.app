@@ -1,3 +1,4 @@
 <aura:application extends = 'force:slds'>
-    <c:AccountTable/>
+        <td><c:AccountTable/></td>
+        <td><c:ContactTable/></td>
 </aura:application>

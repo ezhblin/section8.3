@@ -1,5 +1,5 @@
 ({
-    showRecordDetails : function(component, recordId) {
+	showRecordDetails : function(component, recordId) {
         if (component.get('v.record.Id') != recordId) {
             component.set ('v.record', component.get('v.records').find(record => record.Id === recordId));
         } else {
@@ -20,6 +20,7 @@
                 } else if (state === 'ERROR') {
                     console.error(response.getError());
                 }
+                component.set('v.loaded', true);    
             }));
         $A.enqueueAction(action);
         
@@ -34,6 +35,7 @@
             } else {
                 component.set('v.record', component.get('v.records').find(record => record.Id === component.get('v.record').Id));
             }
+            component.set('v.loaded', true);
         }));
         $A.enqueueAction(action);
     },
@@ -51,8 +53,10 @@
             }
             //this.fillData(component);
             component.set('v.record', null);
+            component.set('v.loaded', true)
         }));
         $A.enqueueAction(action);
+
     },
 
 })

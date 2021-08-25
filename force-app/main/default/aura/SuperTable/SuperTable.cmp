@@ -1,0 +1,21 @@
+<aura:component extensible = "true" abstract = "true" >
+<aura:attribute name="loaded" type="Boolean"/>
+
+<aura:attribute name="CardFaced" type = "Aura.Component[]"/>
+<aura:attribute name="TableHead" type = "Aura.Component[]"/>
+<aura:attribute name="TableBody" type = "Aura.Component[]"/>
+
+	<div>
+		{!v.CardFaced}
+	</div>
+	<table class = "slds-table slds-table_cell-buffer slds-table_bordered">
+		<thead>
+			{!v.TableHead}
+		</thead>
+		<tbody>
+			{!v.TableBody}
+		</tbody>
+	</table>
+
+	{!v.body}
+</aura:component>

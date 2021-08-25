@@ -1,45 +1,8 @@
-<aura:component >
-	<aura:attribute name = "record" type = "Account"/>
-    <aura:attribute name = "updateRecord" type = "Aura.Action"/>
-    <aura:attribute name = "deleteRecord" type = "Aura.Action"/>
-    <aura:attribute name="loaded" type="Boolean" default="true" />
-    <aura:method name = "clearCard">
-        <aura:attribute name = "oReally" type = "Boolean"/>
-    </aura:method>
-
-    <aura:method name = "recordForUpdate" action = "{!v.updateRecord}">
-        <aura:attribute name = "Account" type = "Account"/>
-    </aura:method>
-
-    <aura:method name = "recordForDelete" action = "{!v.deleteRecord}">
-        <aura:attribute name = "Account" type = "Account"/>
-    </aura:method>
-    
-    
-    <div hidden= "{!if(v.record, false, true)}">     
-                <lightning:card> 
-                    <div class="exampleHolder">
-                        <aura:if isTrue="{! v.loaded }">
-                            <div>
-                                <lightning:input type = "text" label = 'Name' value ="{!v.record.Name}" />
-                                <lightning:input type = "text" label = 'Website'  readOnly = "true" value ="{!v.record.Website}" />  
-                                <lightning:input type = "phone" label = 'Phone' value ="{!v.record.Phone}" /> 
-                                <lightning:input type = "number" formatter="currency" label = 'Annual Revenue' value ="{!v.record.AnnualRevenue}" />
-                            </div>
-                            <aura:set attribute="else">
-                                <lightning:spinner alternativeText="Loading" />
-                            </aura:set>
-                        </aura:if>
-    
-                        <lightning:buttonGroup class = "myButton">
-                            <lightning:button variant = "success" label = "Update" onclick="{!c.updateRecordParrent}"/>
-                            <lightning:button variant = "destructive" label = "Delete" onclick="{!c.deleteRecordParrent}"/>
-                        </lightning:buttonGroup>
-                    </div>
-                </lightning:card>        
-        
-        
-        
-        <br/>
-    </div>
+<aura:component extends = "c:SuperCard">
+    <aura:set attribute="InputFacet">
+        <lightning:input type = "text" label = 'Name' value ="{!v.record.Name}" />
+        <lightning:input type = "text" label = 'Website'  readOnly = "true" value ="{!v.record.Website}" />  
+        <lightning:input type = "phone" label = 'Phone' value ="{!v.record.Phone}" /> 
+        <lightning:input type = "number" formatter="currency" label = 'Annual Revenue' value ="{!v.record.AnnualRevenue}" />
+    </aura:set>
 </aura:component>
