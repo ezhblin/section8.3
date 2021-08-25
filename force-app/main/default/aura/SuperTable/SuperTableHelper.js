@@ -46,12 +46,15 @@
         action.setCallback(this, $A.getCallback(response => {
             if (response.getState() != 'SUCCESS') {
                 let data = component.get('v.records');
-                data.map(item => {if(item.Id == component.get('v.record.Id')) item.hide = true});
+                data.map(item => {
+                    if (item.Id == component.get('v.record.Id')){
+                        item.hide = true
+                    }
+                });
                 component.set('v.records', data);
             } else {
                 this.fillData(component);
             }
-            //this.fillData(component);
             component.set('v.record', null);
             component.set('v.loaded', true)
         }));

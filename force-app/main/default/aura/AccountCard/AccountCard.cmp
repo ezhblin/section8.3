@@ -1,6 +1,6 @@
 <aura:component extends = "c:SuperCard">
     <aura:set attribute="InputFacet">
-        <lightning:input type = "text" label = 'Name' value ="{!v.record.Name}" />
+        <lightning:input type = "text" label="Name" value ="{!v.record.Name}" />
         <lightning:input type = "text" label = 'Website'  readOnly = "true" value ="{!v.record.Website}" />  
         <lightning:input type = "phone" label = 'Phone' value ="{!v.record.Phone}" /> 
         <lightning:input type = "number" formatter="currency" label = 'Annual Revenue' value ="{!v.record.AnnualRevenue}" />
