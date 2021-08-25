@@ -1,4 +1,4 @@
-<aura:component controller="AccountController">
+<aura:component controller="AccountController" implements="flexipage:availableForAllPageTypes">
     <aura:attribute name = 'myString' type = 'String'/>
     <aura:attribute name = 'myData' type = 'Object'/>
     <aura:attribute name = 'myColumns' type = 'List'/>
@@ -15,7 +15,7 @@
                     </span>
                 </div>
                 <lightning:input value="{!v.myString}"  class ="input" placeholder="Enter object name here..." label="Object"/>
-                <lightning:input value="{!v.searchingName}"  class ="input" placeholder="Enter path name here..." label="Name"/>                    
+                <lightning:input value="{!v.searchingName}"  class ="input" placeholder="Enter path name here..." label="Name" onchange="{!c.searchPathName}"/>                    
                 <div>
                     <lightning:button label = 'View' class = "button" disabled= "{!if(!v.myString,true,false)}" onclick="{!c.searchHandleClick}"/>
                     <lightning:button label = 'Update' class = "button" disabled= "{!if(!v.myData ,true,false)}" onclick="{!c.updateHandleClick}"/>

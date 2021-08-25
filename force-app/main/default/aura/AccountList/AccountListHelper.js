@@ -27,16 +27,29 @@
             let state = response.getState();
             if (state === 'SUCCESS') {
                 let retrivedObject = response.getReturnValue();
-                let fields = new Set();
-                retrivedObject.map(obj => Object.keys(obj).forEach(fieldName => fields.add(fieldName)));
-                let columns = [];
-                fields.forEach(field => columns.push({label: field, fieldName: field, type: 'text'}));
-                component.set('v.myColumns', columns);
-                component.set('v.myData', retrivedObject);
+                if (!retrivedObject) {
+                    this.showToast('No data, check object name');
+                } else {
+                    let fields = new Set();
+                    retrivedObject.map(obj => Object.keys(obj).forEach(fieldName => fields.add(fieldName)));
+                    let columns = [];
+                    fields.forEach(field => columns.push({label: field, fieldName: field, type: 'text'}));
+                    component.set('v.myColumns', columns);
+                    component.set('v.myData', retrivedObject);
+                }
             } else if (state === 'ERROR') {
-               console.error(response.getError());
+                console.log('ERROR');
+            //    console.log(response.getError());
             }
         }));
         $A.enqueueAction(action);
+    },
+
+    showToast : function(message) {
+        let toastEvent = $A.get("e.force:showToast");
+
+        toastEvent.setParams({'message' : message});
+
+        toastEvent.fire();
     },
 })

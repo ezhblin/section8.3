@@ -1,0 +1,63 @@
+<aura:component  controller = 'AccountTableControllerApex' implements="force:hasRecordId">
+
+<aura:attribute name="records" type = "Account[]" access="public"/>
+<aura:attribute name="record" type = "Account"/>
+
+
+<aura:handler name = "init" value ="{!this}" action = "{!c.init}"/>
+
+
+<div>
+    <c:AccountCard 
+        aura:id = "detailCard"
+        record = "{!v.record}"
+        updateRecord = "{!c.updateTable}"
+        deleteRecord = "{!c.deteteFromTable}"
+    ></c:AccountCard>
+</div>
+<table class = "slds-table slds-table_cell-buffer slds-table_bordered">
+    <thead>
+        <tr>
+            <th>
+                <div>Name</div>
+            </th>
+            <th>
+                <div>Phone</div>
+            </th>
+            <th>
+                <div>Website</div>
+            </th>
+            <th>
+                <div></div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <aura:iteration items="{!v.records}" var = "account" indexVar="i">
+            <tr>
+                <td>
+                    <div>{!account.Name}</div>
+                </td>
+                <td>
+                    <div>{!account.Phone}</div>
+                </td>
+                <td>
+                    <div>{!account.Website}</div>
+                </td>
+                <td>
+                    <div>
+                        <lightning:button
+                            variant="success"
+                            label = "Show/Hide Details"
+                            aura:id = "{!account.Id}"
+                            disabled = '{!account.hide}'
+                            value = "{!account.Id}"
+                            onclick = "{!c.showHideDetails}"
+                        ></lightning:button>
+                    </div>
+                </td>
+            </tr>
+        </aura:iteration>
+    </tbody>
+</table>
+</aura:component>
