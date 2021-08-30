@@ -1,3 +1,12 @@
-<aura:component >
-	
+<aura:component controller="BuilderApex">
+	<aura:attribute name="objectList" type="Object[]"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <aura:registerEvent name="changeObject" type="c:ChangeObject"/>
+
+    <div>
+        <lightning:combobox name="Object" placeholder="Select an Object" options="{!v.objectList}" onchange="{!c.eventFire}"/>
+    </div>
+    
 </aura:component>

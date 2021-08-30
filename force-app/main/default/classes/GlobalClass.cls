@@ -1,5 +1,5 @@
 public with sharing class GlobalClass {
-    static Map<String, Schema.SObjectType> gd = Schema.getGlobalDescribe();
+    public static Map<String, Schema.SObjectType> gd = Schema.getGlobalDescribe();
     
     public static Schema.SObjectType getObject(String objectName) {
         if (gd.containsKey(objectName)) {

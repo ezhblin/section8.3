@@ -1,0 +1,22 @@
+<aura:component controller="BuilderApex" implements = "flexipage:availableForAllPageTypes, force:hasRecordId">
+    <aura:attribute name="myData" type="Contact[]"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute 
+        name="myColumns" 
+        type="Object[]" 
+        default="[{label : 'First name', fieldName : 'FirstName', type : 'text'},
+                  {label : 'Last name',  fieldName : 'LastName',  type : 'text'}]"
+    ></aura:attribute>
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <lightning:button variant = "destructive" label = "Check contacts" onclick="{!c.checkContacts}"/>
+
+    
+    <lightning:datatable 
+        data="{!v.myData}" 
+        columns="{!v.myColumns}"
+        keyField="Id" 
+        hideCheckboxColumn="true"
+    ></lightning:datatable>
+</aura:component>	

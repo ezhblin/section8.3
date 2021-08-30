@@ -60,3 +60,18 @@ stringForFields = stringForFields.removeEnd(', ');
 
 List<User> users = Database.query('SELECT '+stringForFields+ ' FROM User');
 System.debug('THIS====>> ' + users);
+
+
+List<String> listObject = new List<String>();
+for (Schema.SObjectType item : GlobalClass.gd.values()) {
+    Schema.DescribeSObjectResult objectInfo = item.getDescribe();
+    if (objectInfo.isAccessible()&&objectInfo.isQueryable()) {
+        listObject.add(objectInfo.getLabel());
+    }
+}
+
+
+
+Schema.DescribeSObjectResult objectInfo = GlobalClass.gd.get('EntitlementProcess').getDescribe();
+System.debug('THIS====>> ' + BuilderApex.getAviableFields('Contact'));
+

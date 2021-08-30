@@ -1,0 +1,8 @@
+<aura:component implements = "flexipage:availableForAllPageTypes">
+    <aura:attribute name="welcome" type="String"/>
+    <div class="ourWelcome" style="background-color: white;"> 
+        <h3>
+            {#v.welcome}
+        </h3>
+    </div>    
+</aura:component>
