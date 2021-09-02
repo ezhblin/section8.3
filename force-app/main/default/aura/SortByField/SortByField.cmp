@@ -1,9 +1,6 @@
 <aura:component>
-    <aura:attribute name="fieldSort" type="Object"/>
-    <aura:attribute name="limit" type="Integer"/>
+    <aura:attribute name="sort" type="Object"/>
     <aura:attribute name="myData" type="Object[]" default="[]"/>  
-    <aura:attribute name="typeSort" type="Object" default="{!v.pickListForSort[0].value}"/>
-    <aura:attribute name="nulls" type="Object" default="{!v.pickListForNulls[0].value}"/>
     <aura:attribute 
         name="pickListForSort" 
         type="Object[]" 
@@ -16,6 +13,11 @@
         default="[{label : 'Nulls First', value : 'NULLS FIRST'},
                   {label : 'Nulls Last', value : 'NULLS LAST'}]"
     />
+    
+    <aura:registerEvent name="changeORDER" type="c:ChangeORDER"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
     <div class="rowSort">
         <h1>Sort by:</h1>
         <table>
@@ -24,22 +26,25 @@
                     <lightning:combobox 
                         placeholder="Select field"
                         variant="label-hidden" 
-                        value="{!v.fieldSort}" 
+                        value="{!v.sort.fieldSort}" 
                         options="{!v.myData}"
+                        onchange="{!c.sortChange}"
                     />
                 </td>
                 <td>
                     <lightning:combobox 
                         variant="label-hidden" 
-                        value="{!v.typeSort}" 
+                        value="{!v.sort.typeSort}" 
                         options="{!v.pickListForSort}"
+                        onchange="{!c.sortChange}"
                     />
                 </td>
                 <td>
                     <lightning:combobox 
                         variant="label-hidden" 
-                        value="{!v.nulls}" 
+                        value="{!v.sort.nulls}" 
                         options="{!v.pickListForNulls}"
+                        onchange="{!c.sortChange}"
                     />
                 </td>
             </tr>
@@ -47,6 +52,10 @@
     </div>
     <div class="limit">
         <h1>Limit:</h1>
-        <lightning:input variant="label-hidden">{!v.limit}</lightning:input>
+        <lightning:input 
+            variant="label-hidden" 
+            value="{!v.sort.limit}" 
+            onchange="{!c.sortChange}"
+        />
     </div>
 </aura:component>

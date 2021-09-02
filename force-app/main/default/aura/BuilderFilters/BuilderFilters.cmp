@@ -1,18 +1,12 @@
 <aura:component>
     <aura:attribute name="myData" type="Object[]" default="[]"/>
     <aura:attribute name="myFilter" type="Object[]" default="[{}]"/>
-    <aura:attribute 
-        name="pickListForCompare" 
-        type="Object[]" 
-        default="[{label : 'equals', value : '='},
-                  {label : 'not equals', value : '!='},
-                  {label : 'more', value : '>'},
-                  {label : 'less', value : '!>'},
-                  {label : 'contains', value : 'LIKE'}]"
-    />
+    <aura:attribute name="pickListForCompare" type="Object[]"/>
 
-    <!-- <aura:registerEvent name="acceptBuilder" type="c:AcceptBuilder"/> -->
+    <aura:registerEvent name="changeWHERE" type="c:ChangeWHERE"/>
     
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
     <div class="filter">
         <h1>Filter by:</h1>
         <table>
@@ -24,6 +18,7 @@
                             variant="label-hidden" 
                             value="{!item.value}" 
                             options="{!v.myData}"
+                            onchange="{!c.filterChange}"
                         />
                     </td>
                     <td class="col">
@@ -32,6 +27,7 @@
                             variant="label-hidden" 
                             value="{!item.compare}" 
                             options="{!v.pickListForCompare}"
+                            onchange="{!c.filterChange}"
                         />
                     </td>
                     <td class="col"> 
@@ -39,6 +35,8 @@
                             type="{!item.typeForWeb}" 
                             variant="label-hidden" 
                             value="{!item.filter}"
+                            disabled="{! !item.compare || !item.value}"
+                            onchange="{!c.filterChange}"
                         />
                     </td>
                 </tr>

@@ -1,22 +1,20 @@
 <aura:component  controller="BuilderApex">   
-    <aura:attribute name="mySOQL" type="String" default=""/>
     <aura:attribute name="objectName" type="String"/>
+    <aura:attribute name="blockSELECT" type="String"/>
+    <aura:attribute name="blockWHERE" type="String" default=""/>
+    <aura:attribute name="blockORDER" type="String" default=""/>
     
-    <aura:handler event="c:ChangeSOQL" action="{!c.buildSOQL}"/>
+    <aura:handler event="c:ChangeSELECT" action="{!c.buildSelectBlock}"/>
+    <aura:handler event="c:ChangeWHERE" action="{!c.buildWhereBlock}"/>
+    <aura:handler event="c:ChangeORDER" action="{!c.buildOrderBlock}"/>
     
     <h1>SOQL request:</h1>
-    <lightning:textarea value="{!v.mySOQL}" variant="label-hidden"/>
+    <lightning:textarea 
+        value="{!if(v.blockSELECT, (v.blockSELECT + v.blockWHERE + v.blockORDER), '')}" 
+        variant="label-hidden"
+    />
     
-    <p align="center">
-        <lightning:button 
-            variant="success" 
-            label="Request" 
-            disabled="{!if(!v.mySOQL, true, false)}" 
-            onclick="{!c.requestForData}"
-        />
-    </p> 
-
-    <!-- <c:DataTable
-        mySOQL="{!v.mySOQL}"
-    /> -->
+    <c:DataTable
+        mySOQL="{!if(v.blockSELECT, (v.blockSELECT + v.blockWHERE + v.blockORDER), '')}"
+    />
 </aura:component>

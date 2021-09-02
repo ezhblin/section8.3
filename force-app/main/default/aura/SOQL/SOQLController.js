@@ -1,17 +1,40 @@
 ({
-    toggleShow : function(cmp) {
-        cmp.set('v.show', !cmp.get('v.show'));
+    buildSelectBlock : function(cmp, evt) { 
+        let fields = evt.getParam('fields');
+        let blockSelect = 'SELECT ' + fields.replaceAll(';', ', ') + ' FROM ' + cmp.get('v.objectName');
+        cmp.set('v.blockSELECT', blockSelect);
     },
 
-    requestForData: function(cmp) {
-        console.log('do request');
+    buildWhereBlock : function(cmp, evt) { 
+        let blockWhere = ' WHERE'; 
+        let filters = evt.getParam('filters');
+        
+        filters.map((filter, i) => {
+            if (filter.value && filter.compare && filter.filter) {
+                if (i != 0) blockWhere += ' AND';
+                blockWhere += ' ' + filter.value + ' ' + filter.compare + ' ';
+                if (filter.compare == 'LIKE') {
+                    blockWhere += '\'%' + filter.filter + '%\'';
+                } else {
+                    blockWhere += filter.filter;
+                }
+            }
+        });
+        if (blockWhere != ' WHERE') cmp.set('v.blockWHERE', blockWhere);
     },
 
-    buildSOQL : function(cmp, event, helper) {
-        helper.buildStringForSOQL(cmp, event.getParam('dataForSOQL'), cmp.get('v.objectName'));
-    },
+    buildOrderBlock : function(cmp, evt) { 
+        let blockWhere = ''; 
+        let mySort = evt.getParam('mySort');
 
-    getObjectName : function(cmp, event) {
-        cmp.set('v.objectName', event.getParam('objectName'));
+        if (mySort.fieldSort) {
+            blockWhere += ' ORDER BY ' + mySort.fieldSort + ' ' +  mySort.typeSort + ' ' + mySort.nulls;
+        }    
+        if (mySort.limit) {
+            blockWhere += ' LIMIT ' + mySort.limit;
+        }
+
+        if (blockWhere) cmp.set('v.blockORDER', blockWhere);
+    
     },
 })

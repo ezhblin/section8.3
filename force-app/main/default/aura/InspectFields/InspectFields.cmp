@@ -2,7 +2,7 @@
     <aura:attribute name="myData" type="Object[]"/>
     <aura:attribute name="loaded" type="Boolean" default="true"/>
 
-    <aura:registerEvent name="changeSOQL" type="c:ChangeSOQL"/>
+    <aura:registerEvent name="changeSELECT" type="c:ChangeSELECT"/>
     
     <div class="exampleHolder">
         <aura:if isTrue="{!v.loaded}">

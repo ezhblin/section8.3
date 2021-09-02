@@ -1,5 +1,6 @@
 <aura:component controller="BuilderApex" implements = "flexipage:availableForAllPageTypes">
 	<aura:attribute name="objectList" type="Object[]"/>
+    <aura:attribute name="objectName" type="String"/>
     <aura:attribute name="fields" type="Object[]"/>
         
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
@@ -32,7 +33,7 @@
         </tr>
     </table>
     <c:SOQL
-        objectName="{!v.Object.value}"
+        objectName="{!v.objectName}"
     />
 
 </aura:component>
