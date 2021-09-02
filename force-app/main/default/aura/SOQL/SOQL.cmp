@@ -2,12 +2,21 @@
     <aura:attribute name="mySOQL" type="String" default=""/>
     <aura:attribute name="objectName" type="String"/>
     
-    <aura:handler event="c:AcceptBuilder" action="{!c.buildSOQL}"/>
-    <aura:handler event="c:ChangeObject" action="{!c.getObjectName}"/>
+    <aura:handler event="c:ChangeSOQL" action="{!c.buildSOQL}"/>
+    
+    <h1>SOQL request:</h1>
+    <lightning:textarea value="{!v.mySOQL}" variant="label-hidden"/>
+    
+    <p align="center">
+        <lightning:button 
+            variant="success" 
+            label="Request" 
+            disabled="{!if(!v.mySOQL, true, false)}" 
+            onclick="{!c.requestForData}"
+        />
+    </p> 
 
-    <lightning:textarea value="{!v.mySOQL}" label="SOQL request:"/>
-
-    <c:DataTable
+    <!-- <c:DataTable
         mySOQL="{!v.mySOQL}"
-    />
+    /> -->
 </aura:component>

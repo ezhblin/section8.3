@@ -11,14 +11,14 @@
                   {label : 'contains', value : 'LIKE'}]"
     />
 
-    <aura:registerEvent name="acceptBuilder" type="c:AcceptBuilder"/>
+    <!-- <aura:registerEvent name="acceptBuilder" type="c:AcceptBuilder"/> -->
     
     <div class="filter">
-        Filter by:
+        <h1>Filter by:</h1>
         <table>
             <aura:iteration items="{!v.myFilter}" var="item" indexVar="i">
                 <tr>
-                    <td>
+                    <td class="col">
                         <lightning:combobox 
                             placeholder="Select field"
                             variant="label-hidden" 
@@ -26,7 +26,7 @@
                             options="{!v.myData}"
                         />
                     </td>
-                    <td>
+                    <td class="col">
                         <lightning:combobox 
                             placeholder="Select compare"
                             variant="label-hidden" 
@@ -34,7 +34,7 @@
                             options="{!v.pickListForCompare}"
                         />
                     </td>
-                    <td>
+                    <td class="col"> 
                         <lightning:input 
                             type="{!item.typeForWeb}" 
                             variant="label-hidden" 

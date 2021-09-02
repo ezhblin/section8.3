@@ -1,14 +1,13 @@
 <aura:component controller="BuilderApex" implements = "flexipage:availableForAllPageTypes">
 	<aura:attribute name="objectList" type="Object[]"/>
     <aura:attribute name="fields" type="Object[]"/>
-    
-    <!-- <aura:registerEvent name="changeObject" type="c:ChangeObject"/> -->
-    
+        
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
 
     <table>
         <tr>
             <td class="col">
+                <h1>Object:</h1>
                 <lightning:combobox 
                     name="Object" 
                     variant="label-hidden" 

@@ -1,6 +1,9 @@
 <aura:component>
-    <aura:attribute name="fieldSort" type="String"/>
+    <aura:attribute name="fieldSort" type="Object"/>
+    <aura:attribute name="limit" type="Integer"/>
     <aura:attribute name="myData" type="Object[]" default="[]"/>  
+    <aura:attribute name="typeSort" type="Object" default="{!v.pickListForSort[0].value}"/>
+    <aura:attribute name="nulls" type="Object" default="{!v.pickListForNulls[0].value}"/>
     <aura:attribute 
         name="pickListForSort" 
         type="Object[]" 
@@ -13,35 +16,37 @@
         default="[{label : 'Nulls First', value : 'NULLS FIRST'},
                   {label : 'Nulls Last', value : 'NULLS LAST'}]"
     />
-    <aura:attribute name="typeSort" type="Object" default="[{label : 'A-Z', value : 'ASC'}]"/>
-    <aura:attribute name="nulls" type="Object" default="[{label : 'Nulls First', value : 'NULLS FIRST'}]"/>
-
-    
-    <table>
-        <tr>
-            <td>
-                <lightning:combobox 
-                    placeholder="Select field"
-                    variant="label-hidden" 
-                    value="{!v.fieldSort}" 
-                    options="{!v.myData}"
-                />
-            </td>
-            <td>
-                <lightning:combobox 
-                    variant="label-hidden" 
-                    value="{!v.typeSort}" 
-                    options="{!v.pickListForSort}"
-                />
-            </td>
-            <td>
-                <lightning:combobox 
-                    variant="label-hidden" 
-                    value="{!v.nulls}" 
-                    options="{!v.pickListForNulls}"
-                />
-            </td>
-        </tr>
-    </table> 
-
+    <div class="rowSort">
+        <h1>Sort by:</h1>
+        <table>
+            <tr>
+                <td>
+                    <lightning:combobox 
+                        placeholder="Select field"
+                        variant="label-hidden" 
+                        value="{!v.fieldSort}" 
+                        options="{!v.myData}"
+                    />
+                </td>
+                <td>
+                    <lightning:combobox 
+                        variant="label-hidden" 
+                        value="{!v.typeSort}" 
+                        options="{!v.pickListForSort}"
+                    />
+                </td>
+                <td>
+                    <lightning:combobox 
+                        variant="label-hidden" 
+                        value="{!v.nulls}" 
+                        options="{!v.pickListForNulls}"
+                    />
+                </td>
+            </tr>
+        </table> 
+    </div>
+    <div class="limit">
+        <h1>Limit:</h1>
+        <lightning:input variant="label-hidden">{!v.limit}</lightning:input>
+    </div>
 </aura:component>

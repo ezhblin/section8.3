@@ -2,7 +2,8 @@
     <aura:attribute name="myData" type="Object[]"/>
     <aura:attribute name="loaded" type="Boolean" default="true"/>
 
-    <aura:registerEvent name="pickFields" type="c:pickFields"/>
+    <aura:registerEvent name="changeSOQL" type="c:ChangeSOQL"/>
+    
     <div class="exampleHolder">
         <aura:if isTrue="{!v.loaded}">
             <ui:inputSelect multiple="true" class="multiple" aura:id="InputSelectMultiple" change="{!c.onMultiSelectChange}">

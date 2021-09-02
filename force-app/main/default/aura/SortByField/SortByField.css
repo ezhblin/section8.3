@@ -1,2 +1,11 @@
-.THIS {
+.THIS.rowSort{
+    display: inline-block;
+    width: 90%;
+}
+
+.THIS.limit{
+    display: inline-block;
+    vertical-align: bottom;
+    object-position: right;
+    width: 5%;
 }

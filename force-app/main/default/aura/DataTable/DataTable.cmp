@@ -1,23 +1,14 @@
 <aura:component controller="BuilderApex">
     <aura:attribute name="myData" type="Object[]"/>
-    <aura:attribute name="mySOQL" type="String"/>
     <aura:attribute name="myColumns" type="List"/>
 
-    <lightning:datatable 
-        data = '{!v.myData}' 
-        columns = '{!v.myColumns}'
-        keyField = 'Id' 
-        hideCheckboxColumn = 'true'
-        class = 'table'
+    <lightning:datatable
+        hidden="{!if(!v.myColumns, true, false)}"
+        data="{!v.myData}" 
+        columns="{!v.myColumns}"
+        keyField="Id" 
+        hideCheckboxColumn="true"
+        class="table"
     ></lightning:datatable>
-
-    <p align="center">
-        <lightning:button 
-            variant="success" 
-            label="Request" 
-            disabled="{!if(!v.mySOQL, true, false)}" 
-            onclick="{!c.requestForData}"
-        />
-    </p> 
 
 </aura:component>
