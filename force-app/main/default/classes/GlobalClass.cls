@@ -1,6 +1,15 @@
 public with sharing class GlobalClass {
     public static Map<String, Schema.SObjectType> gd = Schema.getGlobalDescribe();
     
+    public static Map<String, List<String>> getCompareForType() {
+        Map<String, List<String>> compare = new Map<String, List<String>>();
+        compare.put('data', new List<String>{'>=', '>', '<=', '<', '=', '!='});
+        compare.put('number', new List<String>{'>=', '>', '<=', '<', '=', '!='});
+        compare.put('text', new List<String>{'=', '!=', 'contains', 'not contains'});
+        return compare;
+    }
+        
+    
     public static Schema.SObjectType getObject(String objectName) {
         if (gd.containsKey(objectName)) {
             return gd.get(objectName);

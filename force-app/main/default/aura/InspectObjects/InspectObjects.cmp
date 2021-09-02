@@ -1,12 +1,39 @@
-<aura:component controller="BuilderApex">
+<aura:component controller="BuilderApex" implements = "flexipage:availableForAllPageTypes">
 	<aura:attribute name="objectList" type="Object[]"/>
+    <aura:attribute name="fields" type="Object[]"/>
+    
+    <!-- <aura:registerEvent name="changeObject" type="c:ChangeObject"/> -->
     
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
 
-    <aura:registerEvent name="changeObject" type="c:ChangeObject"/>
+    <table>
+        <tr>
+            <td class="col">
+                <lightning:combobox 
+                    name="Object" 
+                    variant="label-hidden" 
+                    placeholder="Select an Object" 
+                    options="{!v.objectList}" 
+                    onchange="{!c.getFieldList}"
+                />
+                
+                <c:InspectFields
+                    myData="{!v.fields}"
+                />                 
+            </td>
+            <td class="col">
+                <c:SortByField
+                    myData="{!v.fields}"
+                />
+                
+                <c:BuilderFilters
+                    myData="{!v.fields}"
+                />
+            </td>
+        </tr>
+    </table>
+    <c:SOQL
+        objectName="{!v.Object.value}"
+    />
 
-    <div>
-        <lightning:combobox name="Object" placeholder="Select an Object" options="{!v.objectList}" onchange="{!c.eventFire}"/>
-    </div>
-    
 </aura:component>

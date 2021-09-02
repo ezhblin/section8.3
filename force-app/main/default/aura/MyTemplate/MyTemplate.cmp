@@ -1,0 +1,11 @@
+<aura:component implements="lightning:appHomeTemplate">
+    <!-- <ltng:require styles="{!$WhithoutHeader.slds_page_header_hide}"/> -->
+
+    <aura:attribute name="column1" type="Aura.Component[]"/>
+    <aura:attribute name="column2" type="Aura.Component[]"/>
+
+    <lightning:layout horizontalAlign="start">
+        <lightning:layoutItem size="4" padding="around-small">{!v.column1}</lightning:layoutItem>
+        <lightning:layoutItem size="8" padding="around-small">{!v.column2}</lightning:layoutItem>        
+    </lightning:layout>
+</aura:component>

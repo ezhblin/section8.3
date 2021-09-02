@@ -1,0 +1,47 @@
+<aura:component>
+    <aura:attribute name="fieldSort" type="String"/>
+    <aura:attribute name="myData" type="Object[]" default="[]"/>  
+    <aura:attribute 
+        name="pickListForSort" 
+        type="Object[]" 
+        default="[{label : 'A-Z', value : 'ASC'},
+                  {label : 'Z-A', value : 'DESC'}]"
+    />
+    <aura:attribute 
+        name="pickListForNulls" 
+        type="Object[]" 
+        default="[{label : 'Nulls First', value : 'NULLS FIRST'},
+                  {label : 'Nulls Last', value : 'NULLS LAST'}]"
+    />
+    <aura:attribute name="typeSort" type="Object" default="[{label : 'A-Z', value : 'ASC'}]"/>
+    <aura:attribute name="nulls" type="Object" default="[{label : 'Nulls First', value : 'NULLS FIRST'}]"/>
+
+    
+    <table>
+        <tr>
+            <td>
+                <lightning:combobox 
+                    placeholder="Select field"
+                    variant="label-hidden" 
+                    value="{!v.fieldSort}" 
+                    options="{!v.myData}"
+                />
+            </td>
+            <td>
+                <lightning:combobox 
+                    variant="label-hidden" 
+                    value="{!v.typeSort}" 
+                    options="{!v.pickListForSort}"
+                />
+            </td>
+            <td>
+                <lightning:combobox 
+                    variant="label-hidden" 
+                    value="{!v.nulls}" 
+                    options="{!v.pickListForNulls}"
+                />
+            </td>
+        </tr>
+    </table> 
+
+</aura:component>

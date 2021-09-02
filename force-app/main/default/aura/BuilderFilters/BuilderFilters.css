@@ -1,0 +1,11 @@
+.THIS.filter {
+    display: inline-block;
+    width: 90%;
+}
+
+.THIS.button {
+    display: inline-block;
+    vertical-align: bottom;
+    object-position: right;
+    width: 5%;
+}

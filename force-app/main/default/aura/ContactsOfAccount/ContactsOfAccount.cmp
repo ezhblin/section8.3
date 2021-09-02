@@ -1,4 +1,4 @@
-<aura:component controller="BuilderApex" implements = "flexipage:availableForAllPageTypes, force:hasRecordId">
+<aura:component controller="BuilderApex" implements = "flexipage:availableForAllPageTypes,force:hasRecordId">
     <aura:attribute name="myData" type="Contact[]"/>
     <aura:attribute name="recordId" type="String"/>
     <aura:attribute 
@@ -19,4 +19,4 @@
         keyField="Id" 
         hideCheckboxColumn="true"
     ></lightning:datatable>
-</aura:component>	
+</aura:component>

@@ -1,0 +1,6 @@
+<design:component label="My template">
+    <flexipage:template >
+      <flexipage:region name="column1" defaultWidth="Medium"/>
+      <flexipage:region name="column2" defaultWidth="Medium"/>
+  </flexipage:template>
+</design:component>

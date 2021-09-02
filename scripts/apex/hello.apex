@@ -73,5 +73,5 @@ for (Schema.SObjectType item : GlobalClass.gd.values()) {
 
 
 Schema.DescribeSObjectResult objectInfo = GlobalClass.gd.get('EntitlementProcess').getDescribe();
-System.debug('THIS====>> ' + BuilderApex.getAviableFields('Contact'));
+System.debug('THIS====>> ' + GlobalClass.getCompareForType().get('data'));
 

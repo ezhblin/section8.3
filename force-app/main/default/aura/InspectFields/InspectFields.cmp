@@ -1,29 +1,18 @@
 <aura:component controller="BuilderApex">
     <aura:attribute name="myData" type="Object[]"/>
-    <aura:attribute name="myColumns" type="List"/>
     <aura:attribute name="loaded" type="Boolean" default="true"/>
-    <aura:attribute name="stage" type="String" default=""/>
 
-    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
-    <aura:handler name="changeObject" event="c:ChangeObject" action="{!c.getFields}"/>
-    
-    {!v.stage}
-
-    <c:InspectObjects/>
-    
+    <aura:registerEvent name="pickFields" type="c:pickFields"/>
     <div class="exampleHolder">
         <aura:if isTrue="{!v.loaded}">
-            <div>
-                <lightning:datatable 
-                    data="{!v.myData}" 
-                    columns="{!v.myColumns}"
-                    keyField="Id" 
-                    class="table"
-                ></lightning:datatable>
-            </div>            
+            <ui:inputSelect multiple="true" class="multiple" aura:id="InputSelectMultiple" change="{!c.onMultiSelectChange}">
+                <aura:iteration items="{!v.myData}" var = "item" indexVar="i">
+                    <ui:inputSelectOption text="{!item.value}"/>
+                </aura:iteration>
+            </ui:inputSelect>
             <aura:set attribute="else">
                 <lightning:spinner alternativeText="Loading"/>
             </aura:set>
         </aura:if>
-    </div>        
+    </div>      
 </aura:component>

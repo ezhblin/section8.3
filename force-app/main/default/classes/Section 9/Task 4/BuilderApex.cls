@@ -15,6 +15,7 @@ public with sharing class BuilderApex {
         String label = '';
         String value = '';
         Schema.DisplayType type;
+        String typeForWeb;
         
         Tables(String label, String name) {
             this.label = label;
@@ -25,6 +26,14 @@ public with sharing class BuilderApex {
             this.label = label;
             this.value = name;
             this.type = type;
+
+            if (type == Schema.DisplayType.DATE || type == Schema.DisplayType.DATETIME) {
+                this.typeForWeb = 'date';
+            } else if (type == Schema.DisplayType.INTEGER || type == Schema.DisplayType.DOUBLE) {
+                this.typeForWeb = 'number';
+            } else {
+                this.typeForWeb = 'text';
+            }
         }
 
     }
@@ -51,6 +60,11 @@ public with sharing class BuilderApex {
     public static String retriveContactForAccountApex(String recordId) {
         String accountId = [SELECT AccountId FROM Contact WHERE Id =: recordId LIMIT 1][0].AccountId;
         return retriveContactsApex(accountId);
+    }
+
+    @AuraEnabled
+    public static String getDataFromString(String query) {
+        return JSON.serialize(Database.query(query));
     }
 }  
 

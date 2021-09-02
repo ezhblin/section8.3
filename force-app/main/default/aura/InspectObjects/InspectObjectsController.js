@@ -3,9 +3,16 @@
         helper.getListObjects(cmp);
     },
 
-    eventFire : function(cmp, event, helper) {
-        let customEvent = cmp.getEvent('changeObject');
-        customEvent.setParams({'objectName' : event.getParam('value')});
-        customEvent.fire();
+    getFieldList : function(cmp, event, helper) {
+        let action = cmp.get('c.getAviableFields');
+        action.setParams({objectName : event.getParam('value')});
+        action.setCallback(this, $A.getCallback(response => {
+            if (response.getState() === 'SUCCESS') {
+                cmp.set('v.fields', JSON.parse(response.getReturnValue()));
+            } else {
+                console.log('ERROR');
+            }
+        }));
+        $A.enqueueAction(action);
     },
 })
