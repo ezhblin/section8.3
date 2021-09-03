@@ -1,11 +1,12 @@
 ({
-    buildSelectBlock : function(cmp, evt) { 
+    buildSelectBlock : function(cmp, evt, helper) { 
         let fields = evt.getParam('fields');
         let blockSelect = 'SELECT ' + fields.replaceAll(';', ', ') + ' FROM ' + cmp.get('v.objectName');
         cmp.set('v.blockSELECT', blockSelect);
+        helper.refreshSOQL(cmp);
     },
 
-    buildWhereBlock : function(cmp, evt) { 
+    buildWhereBlock : function(cmp, evt, helper) { 
         let blockWhere = ' WHERE'; 
         let filters = evt.getParam('filters');
         
@@ -21,9 +22,10 @@
             }
         });
         if (blockWhere != ' WHERE') cmp.set('v.blockWHERE', blockWhere);
+        helper.refreshSOQL(cmp);
     },
 
-    buildOrderBlock : function(cmp, evt) { 
+    buildOrderBlock : function(cmp, evt, helper) { 
         let blockWhere = ''; 
         let mySort = evt.getParam('mySort');
 
@@ -35,6 +37,6 @@
         }
 
         if (blockWhere) cmp.set('v.blockORDER', blockWhere);
-    
+        helper.refreshSOQL(cmp);
     },
 })

@@ -13,10 +13,23 @@
         cmp.set('v.myFilter', cmp.get('v.myFilter'));
     },
 
-    filterChange: function (cmp, event) {
+    filterChange: function (cmp) {
         let appEvent = $A.get('e.c:ChangeWHERE');
         appEvent.setParams({'filters' : cmp.get('v.myFilter')});
         appEvent.fire();
     },
+
+    filterChangePlusType: function (cmp) {
+        let filter = cmp.get('v.myFilter');
+        let types = cmp.get('v.myData');
+        filter.map(x => types.map(y => {
+            if(x.value==y.value) x.type = y.typeForWeb
+        }));
+        let appEvent = $A.get('e.c:ChangeWHERE');
+        cmp.set('v.myFilter', filter);
+        appEvent.setParams({'filters' : filter});
+        appEvent.fire();
+    },
+
 
 })

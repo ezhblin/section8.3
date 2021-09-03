@@ -27,8 +27,10 @@ public with sharing class BuilderApex {
             this.value = name;
             this.type = type;
 
-            if (type == Schema.DisplayType.DATE || type == Schema.DisplayType.DATETIME) {
+            if (type == Schema.DisplayType.DATE) {
                 this.typeForWeb = 'date';
+            } else if (type == Schema.DisplayType.DATETIME) {
+                this.typeForWeb = 'datetime';
             } else if (type == Schema.DisplayType.INTEGER || type == Schema.DisplayType.DOUBLE) {
                 this.typeForWeb = 'number';
             } else {
@@ -48,6 +50,7 @@ public with sharing class BuilderApex {
                 listObject.add(new Tables(fieldInfo.getLabel(), fieldInfo.getLocalName(), fieldInfo.getType() ));
             }
         }
+        listObject.add(new Tables('cancel', 'cancel', Schema.DisplayType.STRING));
         return JSON.serialize(listObject);
     }
 

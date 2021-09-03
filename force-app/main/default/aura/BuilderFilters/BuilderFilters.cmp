@@ -18,7 +18,7 @@
                             variant="label-hidden" 
                             value="{!item.value}" 
                             options="{!v.myData}"
-                            onchange="{!c.filterChange}"
+                            onchange="{!c.filterChangePlusType}"
                         />
                     </td>
                     <td class="col">
@@ -32,7 +32,7 @@
                     </td>
                     <td class="col"> 
                         <lightning:input 
-                            type="{!item.typeForWeb}" 
+                            type="{!item.type}" 
                             variant="label-hidden" 
                             value="{!item.filter}"
                             disabled="{! !item.compare || !item.value}"

@@ -3,6 +3,7 @@
     <aura:attribute name="blockSELECT" type="String"/>
     <aura:attribute name="blockWHERE" type="String" default=""/>
     <aura:attribute name="blockORDER" type="String" default=""/>
+    <aura:attribute name="stringSOQL" type="String"/>
     
     <aura:handler event="c:ChangeSELECT" action="{!c.buildSelectBlock}"/>
     <aura:handler event="c:ChangeWHERE" action="{!c.buildWhereBlock}"/>
@@ -10,11 +11,11 @@
     
     <h1>SOQL request:</h1>
     <lightning:textarea 
-        value="{!if(v.blockSELECT, (v.blockSELECT + v.blockWHERE + v.blockORDER), '')}" 
+        value="{!v.stringSOQL}" 
         variant="label-hidden"
     />
     
     <c:DataTable
-        mySOQL="{!if(v.blockSELECT, (v.blockSELECT + v.blockWHERE + v.blockORDER), '')}"
+        mySOQL="{!v.stringSOQL}"
     />
 </aura:component>
